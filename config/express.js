@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var express = require('express'),
+    swig = require('swig'),
     mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
@@ -30,7 +31,8 @@ module.exports = function(app, passport, db) {
 
     //Set views path, template engine and default layout
     app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
+    app.engine('html', swig.renderFile);
+    app.set('view engine', 'html');
 
     //Enable jsonp
     app.enable("jsonp callback");
