@@ -4,8 +4,6 @@
 	<section data-ng-view></section>
 
 	<script type="text/javascript">
-		window.user = {{user|json}};
-		window.user = JSON.parse(window.user);
-		console.log(user);
+		window.user = JSON.parse({{user|json}});
 	</script>
 {% endblock %}

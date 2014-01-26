@@ -17,7 +17,7 @@ exports.authCallback = function(req, res) {
  * Show login form
  */
 exports.signin = function(req, res) {
-    res.render('users/signin', {
+    res.render('signin', {
         title: 'Signin',
         message: req.flash('error')
     });
@@ -27,7 +27,7 @@ exports.signin = function(req, res) {
  * Show sign up form
  */
 exports.signup = function(req, res) {
-    res.render('users/signup', {
+    res.render('signup', {
         title: 'Sign up',
         user: new User()
     });
@@ -44,7 +44,7 @@ exports.signout = function(req, res) {
 /**
  * Session
  */
-exports.session = function(req, res) {
+exports.session = function(req, res) {console.log('here');
     res.redirect('/');
 };
 
