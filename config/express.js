@@ -3,11 +3,12 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
-    flash = require('connect-flash'),
-    helpers = require('view-helpers'),
-    config = require('./config');
+var express = require('express');
+var mongoStore = require('connect-mongo')(express);
+var swig = require('swig');
+var flash = require('connect-flash');
+var helpers = require('view-helpers');
+var config = require('./config');
 
 module.exports = function(app, passport, db) {
     app.set('showStackError', true);
@@ -29,8 +30,13 @@ module.exports = function(app, passport, db) {
     }
 
     //Set views path, template engine and default layout
-    app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
+    app.set('views', config.root + '/app/_views');
+    app.engine('html', swig.renderFile);
+	app.set('view engine', 'html');
+	swig.setDefaults({
+		cache: false ,
+		autoescape: false
+	});
 
     //Enable jsonp
     app.enable("jsonp callback");
